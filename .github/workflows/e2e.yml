@@ -1,15 +1,12 @@
-name: e2e
-
-on: push
-
+name: End-to-end tests
+on: [push]
 jobs:
-  build:
-    runs-on: ubuntu-18.04
-    
+  cypress-run:
+    runs-on: ubuntu-latest
     steps:
-      name: e2e tests
-      uses: cypress-io/github-action@v2
-      with:
-        command: npm run test:e2e
-        start: npm run start-prod
-        wait-on: http://localhost:8080
+      - name: e2e tests
+        uses: cypress-io/github-action@v2
+        with:
+          command: npm run test:e2e
+          start: npm run start-prod
+          wait-on: http://localhost:8080
